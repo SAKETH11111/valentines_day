@@ -54,7 +54,7 @@ To change the text and story of the slideshow, you must edit the content directl
 - **Purpose**: Contains all the text and image paths for the story.
 - **Example**: To change the opening line:
   ```diff
-  - <p class="text1">--❤郭磊一生一世</p>
+  - <p class="text1">--❤Guo Lei for a lifetime</p>
   + <p class="text1">--❤A New Love Story</p>
   ```
 

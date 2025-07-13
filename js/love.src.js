@@ -25,39 +25,39 @@ $(function(){
 			var textHref = $("#text-href").text(),
 			textMusic = $("#text-music").text();
 			if(textHref.replace(/\s+/g,"") ==""){
-				$("#write-url i").text("←不能为空").fadeIn();
+				$("#write-url i").text("←Cannot be empty").fadeIn();
 				$("#text-href").focus();
 				setTimeout(function() {$("#write-url i").fadeOut();},3000);
 			}else if(!/^[\w\-]{3,30}$/.test(textHref)){
-				$("#write-url i").text("←格式不正确").fadeIn();
+				$("#write-url i").text("←Incorrect format").fadeIn();
 				$("#text-href").focus();
 				setTimeout(function() {$("#write-url i").fadeOut();},3000);
 			}else if(textMusic.replace(/\s+/g,"") ==""){
-				$("#write-mp3 i").text("←不能为空").fadeIn();
+				$("#write-mp3 i").text("←Cannot be empty").fadeIn();
 				$("#text-music").focus();
 				setTimeout(function() {$("#write-mp3 i").fadeOut();},3000);
 			}else if(!/^(http|https):\/\/+([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?$/.test(textMusic)){
-				$("#write-mp3 i").text("←不允许的链接").fadeIn();
+				$("#write-mp3 i").text("←Invalid link").fadeIn();
 				$("#text-music").focus();
 				setTimeout(function() {$("#write-mp3 i").fadeOut();},3000);
 			}else{
 				$("#back").html('<img src="img/loading.gif" alt="loading">');
-				$("#write-post").text("页面生成中...").attr("disabled",true).addClass("disabled");
+				$("#write-post").text("Generating page...").attr("disabled",true).addClass("disabled");
 				$.post("love.php?add",{textHref:textHref,textMusic:textMusic,textArr:textArr},
 				function(data){
 					if(data['status'] == 1){
 						$("#back").hide();
 						$(".write-ok p").hide()
 						$(".write-ok div button").hide();
-						$(".write-ok div h2").hide().text("成功生成表❤白页面").fadeIn();
-						$("#write-url").html('您的表白链接是：<a href="'+data['url']+'" target="_blank">'+data['url']+'</a>').fadeIn();
+						$(".write-ok div h2").hide().text("Successfully generated love ❤ page").fadeIn();
+						$("#write-url").html('Your love page link is: <a href="'+data['url']+'" target="_blank">'+data['url']+'</a>').fadeIn();
 						$(".write-share").css("display","inline-block").children("p").show();
 					}else if(data['status'] == 0){
 						$("#write-url i").text(data['msg']).fadeIn();
 						$("#text-href").focus();
 						setTimeout(function() {$("#write-url i").fadeOut();},3000);
-						$("#back").text("重新修改");
-						$("#write-post").text("❤ 生成表白页面").attr("disabled",false).removeClass("disabled");
+						$("#back").text("Edit again");
+						$("#write-post").text("❤ Generate love page").attr("disabled",false).removeClass("disabled");
 					}
 				},"json");
 			}
